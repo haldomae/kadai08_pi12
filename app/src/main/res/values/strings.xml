@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">kadai08_pi12</string>
+    <!-- 一覧 -->
+    <string name="add_button">追加ボタン</string>
+
+    <!-- 一覧内アイテム -->
+    <string name="default_data">2024/01/01</string>
+    <string name="default_text">ここにテキストが入ります</string>
 </resources>
