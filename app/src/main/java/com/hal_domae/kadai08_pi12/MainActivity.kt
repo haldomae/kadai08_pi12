@@ -1,12 +1,14 @@
 package com.hal_domae.kadai08_pi12
 
 import android.os.Bundle
-import android.widget.SimpleAdapter
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.hal_domae.kadai08_pi12.databinding.ActivityMainBinding
+import com.hal_domae.kadai08_pi12.recyclerview.ListAdapter
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -30,12 +32,19 @@ class MainActivity : AppCompatActivity() {
             mapOf("date" to "2024/06/01", "text" to "ここに日記のテキストが入ります"),
             mapOf("date" to "2024/07/01", "text" to "ここに日記のテキストが入ります"),
         )
-        binding.diaryList.adapter = SimpleAdapter(
-            this,
-            sampleData,
-            R.layout.list_item,
-            arrayOf("date", "text"),
-            intArrayOf(R.id.date, R.id.text)
-        )
+//        binding.diaryList.adapter = SimpleAdapter(
+//            this,
+//            sampleData,
+//            R.layout.list_item,
+//            arrayOf("date", "text"),
+//            intArrayOf(R.id.date, R.id.text)
+//        )
+        // RecyclerViewの設定
+        // LayoutManagerでリストの表示形式を決める
+        binding.diaryList.layoutManager= LinearLayoutManager(this)
+        binding.diaryList.adapter = ListAdapter(sampleData)
+
+        val dividerItemDecoration = DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL)
+        binding.diaryList.addItemDecoration(dividerItemDecoration)
     }
 }
