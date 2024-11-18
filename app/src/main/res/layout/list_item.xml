@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="@string/default_data"/>
+        tools:text="@string/default_date"/>
     <TextView
         android:id="@+id/text"
         android:layout_width="0dp"
