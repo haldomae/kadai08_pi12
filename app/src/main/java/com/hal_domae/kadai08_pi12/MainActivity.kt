@@ -1,5 +1,6 @@
 package com.hal_domae.kadai08_pi12
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -74,5 +75,10 @@ class MainActivity : AppCompatActivity() {
 
         val dividerItemDecoration = DividerItemDecoration(this@MainActivity, DividerItemDecoration.VERTICAL)
         binding.diaryList.addItemDecoration(dividerItemDecoration)
+
+        // 日記追加画面に遷移
+        binding.addButton.setOnClickListener {
+            startActivity(Intent(this@MainActivity, EditActivity::class.java))
+        }
     }
 }
