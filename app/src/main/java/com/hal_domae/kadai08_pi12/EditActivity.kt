@@ -19,5 +19,10 @@ class EditActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        binding.selectDate.setOnClickListener {
+            val datePicker = DatePickerFragment()
+            datePicker.show(supportFragmentManager, "datePicker")
+        }
     }
 }
