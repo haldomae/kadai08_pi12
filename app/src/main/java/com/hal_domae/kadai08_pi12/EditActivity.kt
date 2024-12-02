@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -38,6 +39,15 @@ class EditActivity : AppCompatActivity() {
             datePicker.show(supportFragmentManager, "datePicker")
         }
 
+        Log.d("テスト01","test")
+        // 項目タップした時に渡されたデータを反映
+        intent?.extras?.let{
+            val test = it.getString("DIARY_DATE")
+            Log.d("aaaaa",test.toString())
+            binding.selectDate.setText(it.getString("DIARY_DATE"))
+            binding.inputDiary.setText(it.getString("DIARY_TEXT"))
+        }
+
         // データベースを用意
         dbHelper = DatabaseHelper(this@EditActivity)
 
@@ -62,27 +72,22 @@ class EditActivity : AppCompatActivity() {
                 //  SQLiteDatabase.CONFLICT_REPLACEが重複してたら置き換える
                 db.insertWithOnConflict("diary_items", null,value, SQLiteDatabase.CONFLICT_REPLACE)
 
-                // 項目タップした時に渡されたデータを反映
-                intent?.extras?.let{
-                    binding.selectDate.setText(it.getString("DIARY_DATE"))
-                    binding.inputDiary.setText(it.getString("DIARY_TEXT"))
-                }
-
-                // 削除処理
-                // 1. 削除ボタンが押されたら
-                // 2．日付が入力されているか? 入力されていなければToastを出します
-                // 3. 削除処理を実行
-                //  A. 配列の形式でデータを取得(arrayOf(日付の場所のテキストを取得した後、String型にキャストする))
-                //  B. deleteメソッドを使ってデータ削除
-                //   a. 3つ引数が必要で、1番目がテーブル名
-                //   b. 2番目が削除する条件でプレースホルダーで指定する(例 : "user_id = ?")
-                //   c. 3番目がプレースホルダーの?にハマるパラメータを配列で指定
-                // 4. 一覧画面に遷移する
 
                 // 日記一覧に戻る
                 startActivity(Intent(this@EditActivity, MainActivity::class.java))
             }
         }
+
+        // 削除処理
+        // 1. 削除ボタンが押されたら
+        // 2．日付が入力されているか? 入力されていなければToastを出します
+        // 3. 削除処理を実行
+        //  A. 配列の形式でデータを取得(arrayOf(日付の場所のテキストを取得した後、String型にキャストする))
+        //  B. deleteメソッドを使ってデータ削除
+        //   a. 3つ引数が必要で、1番目がテーブル名
+        //   b. 2番目が削除する条件でプレースホルダーで指定する(例 : "user_id = ?")
+        //   c. 3番目がプレースホルダーの?にハマるパラメータを配列で指定
+        // 4. 一覧画面に遷移する
     }
 
     // 気分が選択されたとき

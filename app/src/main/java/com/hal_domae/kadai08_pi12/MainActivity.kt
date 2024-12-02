@@ -2,6 +2,7 @@ package com.hal_domae.kadai08_pi12
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        Log.d("テスト01","test")
         // データベースから取り出したデータを入れる
         val data = mutableListOf<Map<String, String>>()
         // データベースを用意
